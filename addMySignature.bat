@@ -8,15 +8,14 @@ set assignment=LAB 01
 echo off
 cls
 for /r %%i in (*.java) do (call :loop %%i)
-goto :eof
 exit
 
 :loop
 find "%name%" %1 > nul & find "%id%" %1 > nul
-if %errorlevel% equ 1 call :found %1
-echo Nothing to add. The signatures already exsits
+set level=%errorlevel%
+if %level% equ 1 (call :found %1)
+if %level% equ 0 echo Nothing to add. The signatures already exsits
 goto :eof
-
 
 :found
 echo /* > %tempFile%
@@ -29,3 +28,4 @@ type %1 >> %tempFile%
 type %tempFile% > %1
 del %tempFile%
 echo Added your signature successfully.
+goto :eof
