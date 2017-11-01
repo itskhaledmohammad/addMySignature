@@ -19,8 +19,8 @@ exit
 :loop
 findstr "%name%" %1 > nul & findstr "%id%" %1 > nul
 set level=%errorlevel%
-if %errorlevel% equ 1 (call :found %1)
-if %level% equ 0 echo Nothing to add. The signatures already exsits (%1)
+if %level% equ 1 (call :found %1)
+if %level% equ 0 echo %1: Nothing to add. There is a signature already in the file.
 goto :eof
 
 :found
@@ -33,5 +33,5 @@ echo  */ >> %tempFile%
 type %1 >> %tempFile%
 type %tempFile% > %1
 del %tempFile%
-echo Added your signature successfully.(%i)
+echo %1: Added your signature successfully.(%i)
 goto :eof
