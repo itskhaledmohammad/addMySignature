@@ -7,7 +7,7 @@ set assignment=LAB 01
 
 echo off
 cls
-find "/*" listTester.java > nul
+find "%name%"  listTester.java > nul & find "%id%" listTester.java > nul
 if %errorlevel% equ 1 goto found
 echo Nothing to add. The signatures already exsits
 exit
